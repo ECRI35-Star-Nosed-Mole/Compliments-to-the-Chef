@@ -1,0 +1,20 @@
+{
+  "name": "compliments-to-the-chef",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./client/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development & nodemon ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ECRI35-Star-Nosed-Mole/Compliments-to-the-Chef.git"
+  },
+  "author": "Marco Gonzalez, Brian Preston, Nicholas Echevarria, Sagar Velagala, ChunHao Zheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ECRI35-Star-Nosed-Mole/Compliments-to-the-Chef/issues"
+  },
+  "homepage": "https://github.com/ECRI35-Star-Nosed-Mole/Compliments-to-the-Chef#readme"
+}
