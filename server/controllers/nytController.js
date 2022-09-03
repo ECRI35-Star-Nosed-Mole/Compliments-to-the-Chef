@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { nytModel } = require('./models/models.js');
+const { nytModel } = require('../models/models');
 
 const nytController = {};
 nytController.apiKey = '07cDbXzAu2mlaG4AD6aGxfABGC4uzlGZ'; // NOTE: Store as an environmental variable.

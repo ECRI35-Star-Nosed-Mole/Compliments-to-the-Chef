@@ -2,7 +2,7 @@ const yelpController = {};
 const yelpApiKey =
   'BEARER _M1qinn5VEpazBeQsTU7ID5mamOCR3JLmNcjALFjoOwK-ip_OwbGRxPWyLv58NjN4-VLhLrMOZ3vlO1HPyMVd2s7AGmFs8aSwKzslPRUKIymxx_VstqwT0CIAG0TY3Yx';
 const yelpUrl = 'https://api.yelp.com/v3/businesses/';
-const yelpModel = require('./yelpModel');
+const yelpModel = require('../models/models');
 
 /* Async func to find a single restaurant's details in our Mongoose db. 
 If it doesn't exist, fetch them from Yelp API instead. */

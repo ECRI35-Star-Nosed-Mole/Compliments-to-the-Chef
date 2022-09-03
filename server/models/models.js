@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const URI = `mongodb+srv://starnosedmole:${pw}@star-nosed-mole.t9b2xpp.mongodb.net/?retryWrites=true&w=majority`;
 const pw = 'codesmith'; // NOTE: use environmental variable
+const URI = `mongodb+srv://starnosedmole:${pw}@star-nosed-mole.t9b2xpp.mongodb.net/?retryWrites=true&w=majority`;
+
 
 mongoose.connect(URI, {
   useNewUrlParser: true,

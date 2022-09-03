@@ -1,8 +1,8 @@
 const path = require('path');
 const express = require('express');
-const router = express().Router();
-const nytController = require('./controllers/nytController');
-const yelpController = require('./controllers/yelpController');
+const router = express.Router();
+const nytController = require('../controllers/nytController');
+const yelpController = require('../controllers/yelpController');
 
 // NY TIMES API //
 router.get('/nyt', nytController.getReview, (req, res) => {
