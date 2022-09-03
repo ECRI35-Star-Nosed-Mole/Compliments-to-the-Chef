@@ -13,7 +13,7 @@ router.get('/nyt', nytController.getReview, (req, res) => {
 // YELP API //
 router.get('/yelp', yelpController.getRestaurant, (req, res) => {
   console.log('/yelp GET route complete');
-  res.status(200).send(res.locals.restaurant);
+  res.status(200).json(res.locals.restaurant);
 });
 
 module.exports = router;

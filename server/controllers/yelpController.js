@@ -1,42 +1,44 @@
+const fetch = require('node-fetch');
+const { yelpModel } = require('../models/models');
+
 const yelpController = {};
 const yelpApiKey =
   'BEARER _M1qinn5VEpazBeQsTU7ID5mamOCR3JLmNcjALFjoOwK-ip_OwbGRxPWyLv58NjN4-VLhLrMOZ3vlO1HPyMVd2s7AGmFs8aSwKzslPRUKIymxx_VstqwT0CIAG0TY3Yx';
-const yelpUrl = 'https://api.yelp.com/v3/businesses/';
-const yelpModel = require('../models/models');
+const url = 'https://api.yelp.com/v3/businesses/search';
+
 
 /* Async func to find a single restaurant's details in our Mongoose db. 
 If it doesn't exist, fetch them from Yelp API instead. */
 yelpController.getRestaurant = async (req, res, next) => {
-  //Hard coded restaurant id for not until we refactor for scale
-  const karasuId = 'eyjeP9CJZ_gYgeJFP_vtpQ';
-  // const { yelpId } = req.body;
+  const { restaurant_name, location } = req.body;
+  const searchQuery = `?term=${restaurant_name}&location=${location}`;
 
   try {
-    const mongooseRes = await yelpModel.findOne({ yelpId: karasuId });
-
-    //Unsure if there is a better way to check for this. Open to refactor if so.
-    if (mongooseRes == null || mongooseRes == []) {
-      const yelpRes = await fetch(`${yelpUrl} + '/' ${karasuId}`).then((res) =>
-        res.json()
-      );
-
-      const createdRestaurant = yelpModel.create({
-        name: yelpRes.name,
-        yelpId: yelpRes.id,
-        image: yelpRes.image_url,
-        location: yelpRes.location,
-        url: yelpRes.url,
-        rating: yelpRes.rating,
+    // pull from db
+    res.locals.restaurant = await yelpModel.findOne({ restaurant_name });
+    // if empty, add to db and return
+    if (!res.locals.restaurant) {
+      const query = await fetch(url + searchQuery, {
+        method: 'GET',
+        headers: {
+          'Authorization': yelpApiKey,
+          'Content-Type': 'application/json'
+        }
       });
+      const response = await query.json();
+      const data = await response.businesses[0];
 
-      res.locals.restaurant = createdRestaurant;
-      return next();
+      const { yelpID, name, image_url, yelpUrl, phone, categories, yelpRating, location, photos, price } = data;
+      const save = await yelpModel.create({ restaurant_name, yelpID, name, image_url, yelpUrl, phone, categories, yelpRating, location, photos, price });
+      res.locals.restaurant = await yelpModel.findOne({ restaurant_name }); 
     }
 
-    res.locals.restaurant = mongooseRes;
     return next();
   } catch (err) {
-    return next(err);
+    return next({
+      log: 'Error in yelpController.getRestaurant',
+      message: err
+    });
   }
 };
 

@@ -2,6 +2,10 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 
+const nytController = require('../controllers/nytController');
+const yelpController = require('../controllers/yelpController');
+const reviewController = require('../controllers/reviewController');
+
 router.use('/api', (req, res) => {
   console.log('/api route complete');
   res.status(200).end();
@@ -11,8 +15,14 @@ router.use('/api', (req, res) => {
 
 // RESTAURANT QUERIES //
 
-// GET RESTAURANT
-router.get('/restaurant', (req, res) => {
+// GET RESTAURANT INFO
+router.get('/restaurant/info', yelpController.getRestaurant, (req, res) => {
+  console.log('/restaurant GET route complete');
+  res.status(200).send(res.locals.restaurant);
+});
+
+// GET RESTAURANT CRITIC REVIEWS
+router.get('/restaurant/critic', nytController.getReview, (req, res) => {
   console.log('/restaurant GET route complete');
   res.status(200).end();
 });
@@ -21,25 +31,25 @@ router.get('/restaurant', (req, res) => {
 
 // REVIEW QUERIES //
 
-// GET REVIEW
+// GET USER REVIEWS
 router.get('/review', (req, res) => {
   console.log('/review GET route complete');
   res.status(200).end();
 });
 
-// POST REVIEW
+// POST USER REVIEWS
 router.post('/review', (req, res) => {
   console.log('/review route complete');
   res.status(200).end();
 });
 
-// PUT REVIEW (updating entire review)
+// PUT USER REVIEWS
 router.put('/review/?', (req, res) => {
   console.log('/review route complete');
   res.status(200).end();
 });
 
-// DELETE REVIEW
+// DELETE USER REVIEWS
 router.delete('/review/?', (req, res) => {
   console.log('/review PATCH route complete');
   res.status(200).end();

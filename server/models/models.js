@@ -26,17 +26,33 @@ const nytSchema = new Schema({
 const nytModel = mongoose.model('nyt_reviews', nytSchema);
 
 const yelpSchema = new Schema({
-  name: { type: String, required: true },
-  yelpId: { type: String, required: true },
-  image: { type: String, required: true },
-  location: { type: Object, required: true },
-  url: { type: String, required: true },
-  rating: { type: Number, required: true },
+  restaurant_name: String,
+  yelpId: String, //id
+  name: String,
+  image_url: String,
+  yelpUrl: String, // url
+  phone: String,
+  categories: Array,
+  yelpRating: Number, // rating
+  location: Object,
+  photos: Array,
+  price: String,
 });
 
 const yelpModel = mongoose.model('yelp_restaurants', yelpSchema);
 
+const reviewSchema = new Schema({
+  username: String, 
+  restaurant_name: String,
+  vote: Boolean,
+  review_content: String,
+  date: Date
+});
+
+const reviewModel = mongoose.model('reviews', reviewSchema);
+
 module.exports = {
   nytModel,
   yelpModel,
+  reviewModel,
 };
