@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-export default function login() {
+export default function userRatings() {
   
   const [sta, setSta] = useState(null);
-  console.log('login');
+  console.log('userRatings');
   return (
-    <div>Login</div>
+    <div>userRatings</div>
   );
 }
-
