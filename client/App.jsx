@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
-import {Route, Routes, NavLink, BrowserRouter } from 'react-router-dom';
-import Login from './login';
+import { Route, Routes, NavLink, BrowserRouter } from 'react-router-dom';
+
 import RestaurantProfileContainer from './restaurantProfileContainer';
-
-
+import NavBar from './components/NavBar.js';
+// import navLogo from './components/assets/NavLogo.png';
+import { Container, Typography, Grow, Grid } from '@mui/material';
 class App extends Component {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  render () {
-
-    return (
-      <BrowserRouter>
-        <h1>Compliments to the Chef</h1>
-        <ul className="header">
-          <li><NavLink to="/login">login</NavLink></li>
-          <li><NavLink to="/restaurantprofile">Restaurant Profile</NavLink></li>
-        </ul>
-        <div>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/restaurantprofile" element={<RestaurantProfileContainer />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    );
-  }
+	render() {
+		return (
+			<Container>
+				<nav>
+					<BrowserRouter>
+						<ul className="header">
+							<NavBar />
+							<li>
+								<NavLink to="/restaurantprofile">Restaurant Profile</NavLink>
+								<Routes>
+									<Route
+										path="/restaurantprofile"
+										element={<RestaurantProfileContainer />}
+									></Route>
+								</Routes>
+							</li>
+						</ul>
+					</BrowserRouter>
+				</nav>
+			</Container>
+		);
+	}
 }
 
 export default App;
