@@ -46,7 +46,7 @@ async function submitSignUp() {
   body.email = document.querySelector('#email').value;
   body.password = document.querySelector('#password').value;
   console.log(body);
-  
+
 }
 
 
