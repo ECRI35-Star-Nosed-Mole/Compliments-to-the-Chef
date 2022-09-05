@@ -2,12 +2,12 @@ const { reviewModel } = require('../models/models.js');
 
 const reviewController = {};
 
-reviewController.getReview = async (req, res, next) => {
+reviewController.getReviews = async (req, res, next) => {
   const { username, restaurant_name } = req.body;
   try {
     const response = await reviewModel.find({ username, restaurant_name });
     if (!response) return next({ message: 'No reviews by this user.' });
-    res.locals.review = response;
+    res.locals.reviews = response;
     return next();
   } catch (err) {
     const errObj = {
@@ -20,7 +20,8 @@ reviewController.getReview = async (req, res, next) => {
 };
 
 reviewController.createReview = async (req, res, next) => {
-  const { username, restaurant_name, vote, review_content, date } = req.body;
+  const { username, restaurant_name, vote, review_content } = req.body;
+  const date = new Date(); 
 
   try {
     const response = await reviewModel.create({
@@ -30,7 +31,7 @@ reviewController.createReview = async (req, res, next) => {
     return next();
   } catch (err) {
     const errObj = {
-      log: 'Express error handler caught in createStudent middleware error',
+      log: 'Express error handler caught in createReview middleware error',
       status: 400,
       message: { err: 'Incorrect and/or incomplete data submitted' },
     };
@@ -40,13 +41,16 @@ reviewController.createReview = async (req, res, next) => {
 
 reviewController.updateReview = async (req, res, next) => {
   const { username, restaurant_name, vote, review_content, date } = req.body;
+  const _id = '631684cbe9535820980b003b';
 
   try {
-    const response = await reviewModel.updateOne(
-      { username, restaurant_name, date },
-      { $set: { username, restaurant_name, vote, review_content, date } }
+    const response = await reviewModel.findByIdAndUpdate(
+      { _id },
+      { $set: { username, restaurant_name, vote, review_content, date } }, 
+      { new: true } 
     );
     res.locals.updatedReview = response;
+    console.log('UPDATE REVIEW', response);
     return next();
   } catch (err) {
     const errObj = {
@@ -61,11 +65,11 @@ reviewController.updateReview = async (req, res, next) => {
 },
 
 reviewController.deleteReview = async (req, res, next) => {
-  const { username, restaurant_name, date } = req.body;
+  // const { _id } = req.body;
+  const _id = '631684cbe9535820980b003b';
 
   try {
-    const response = await reviewModel.findOneAndDelete({ username, restaurant_name, date });
-    res.locals.deletedReview = response;
+    const response = await reviewModel.findByIdAndDelete({ _id });
     return next();
   } catch (err) {
     return next(err);
