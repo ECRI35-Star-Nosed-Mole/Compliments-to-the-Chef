@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from './assets/NavLogo.png';
 import { Route, Routes, Link, BrowserRouter } from 'react-router-dom';
 import Login from './login';
+import Signup from './signup';
 // import useStyles from './navStyles.js';
 
 import {
@@ -27,7 +28,7 @@ const NavBar = () => {
           </Typography>
           <Box>
             <Button>Sign Up</Button>
-            <Button color="inherit" component={Link} to="/login">
+            <Button color="inherit" component={Link} to="/signup">
 							Sign Up
             </Button>
             <Button color="inherit" component={Link} to="/login">
@@ -39,6 +40,7 @@ const NavBar = () => {
           </Box>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </BrowserRouter>
       </Toolbar>
