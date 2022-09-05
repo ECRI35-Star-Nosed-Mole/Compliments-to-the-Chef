@@ -1,7 +1,7 @@
-import { width } from '@mui/system';
+// import { width } from '@mui/system';
 import React from 'react';
 
-const style = {maxWidth:'100%'};
+const style = {maxWidth:'100%', maxHeight:'15rem'};
 
 function Info(){
   console.log('info');
@@ -31,6 +31,7 @@ function Info(){
       <p>Saturday: {hours[5]}</p>
       <p>Sunday: {hours[6]}</p>
       <img src={interiorPicUrl} alt="Restaurant Interior" style={style}></img>
+      <p></p>
       <img src={dishPicUrl} alt="Restaurant Dish" style={style}></img>
     </div>
   );
