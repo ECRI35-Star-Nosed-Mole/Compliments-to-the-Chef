@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from './assets/NavLogo.png';
 import { Route, Routes, Link, BrowserRouter } from 'react-router-dom';
-import Login from '../login';
+import Login from './login';
 // import useStyles from './navStyles.js';
 
 import {
