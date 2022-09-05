@@ -33,7 +33,8 @@ const infoStyle = {
 
 const reviewStyle = {
   border: 'inherit',
-  flex:'3'
+  flex:'3',
+  overflow:'auto'
 };
 
 function App() {

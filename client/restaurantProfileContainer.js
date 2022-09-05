@@ -6,16 +6,17 @@ import UserRatings from './components/userRatings';
 import {  Button } from '@mui/material';
 
 export default function restauntProfileContainer() {
+  const criticButtonStyle = {left: '25%'};
+  const userButtonStyle = {left: '50%'};
   const [sta, setSta] = useState(null);
   console.log('restaurant');
   return (
     <div>
-      restaurantProfileContainer
       <BrowserRouter>
-        <Button color="inherit" component={Link} to="/">
+        <Button color="inherit" component={Link} to="/" style={criticButtonStyle}>
           Critic Ratings
         </Button>
-        <Button color="inherit" component={Link} to="/userratings">
+        <Button color="inherit" component={Link} to="/userratings" style={userButtonStyle}>
           User Ratings
         </Button>
         <Routes>
