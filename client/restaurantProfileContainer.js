@@ -12,14 +12,14 @@ export default function restauntProfileContainer() {
     <div>
       restaurantProfileContainer
       <BrowserRouter>
-        <Button color="inherit" component={Link} to="/criticratings">
+        <Button color="inherit" component={Link} to="/">
           Critic Ratings
         </Button>
         <Button color="inherit" component={Link} to="/userratings">
           User Ratings
         </Button>
         <Routes>
-          <Route path="/criticratings" element={<CriticRatings />} />
+          <Route path="/" element={<CriticRatings />} />
           <Route path="/userratings" element={<UserRatings />} />
         </Routes>
       </BrowserRouter>
