@@ -104,4 +104,3 @@ dist
 .tern-port
 client/.DS_Store
 client/components/.DS_Store
-.gitignore

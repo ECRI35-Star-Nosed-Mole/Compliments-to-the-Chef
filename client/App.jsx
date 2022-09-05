@@ -30,6 +30,31 @@ class App extends Component {
           </BrowserRouter> */}
       </nav>
       // </Container>
+
+
+    // <BrowserRouter>
+    //   <ul className="header">
+    //     <li><NavLink to="/login">login</NavLink></li>
+    //     <li><NavLink to="/restaurantprofile">Restaurant Profile</NavLink></li>
+    //     <li><NavLink to="/criticRatings">Critic Ratings</NavLink></li>
+    //     {/* <li><NavLink to="/header">header</NavLink></li> */}
+    //     <li><NavLink to="/info">info</NavLink></li>
+    //     <li><NavLink to="/signup">signup</NavLink></li>
+    //     <li><NavLink to="/userRatings">User Ratings</NavLink></li>
+    //   </ul>
+    //   <div>
+    //     <Routes>
+    //       <Route path="/" element={<RestaurantProfileContainer />} />
+    //       <Route path="/login" element={<Login />} />
+    //       <Route path="/restaurantprofile" element={<RestaurantProfileContainer />} />
+    //       <Route path="/criticRatings" element={<CriticRatings />} />
+    //       {/* <Route path="/header" element={<Header />} /> */}
+    //       <Route path="/info" element={<Info />} />
+    //       <Route path="/signup" element={<Signup />} />
+    //       <Route path="/userRatings" element={<UserRatings />} />
+    //     </Routes>
+    //   </div>
+    // </BrowserRouter>
     );
   }
 }
