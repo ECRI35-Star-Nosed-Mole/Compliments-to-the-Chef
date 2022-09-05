@@ -20,22 +20,27 @@ const NavBar = () => {
   const displayHeader = () => {
     return (
       <Toolbar>
-        <img src={Logo} alt="icon" height="60"></img>
-        <Typography className="header" variant="h6" sx={{ flexGrow: 1 }}>
-					Compliments To The Chef
-        </Typography>
-        <Box>
-          <Button>Sign Up</Button>
-          <Button color="inherit" Component={Link} to={Login}>
-						Sign Up
-          </Button>
-          <Button color="inherit" Component={Link} to={Login}>
-						Login
-          </Button>
-          <IconButton>
-            <Avatar className="navAvaar" />
-          </IconButton>
-        </Box>
+        <BrowserRouter>
+          <img src={Logo} alt="icon" height="60"></img>
+          <Typography className="header" variant="h6" sx={{ flexGrow: 1 }}>
+						Compliments To The Chef
+          </Typography>
+          <Box>
+            <Button>Sign Up</Button>
+            <Button color="inherit" component={Link} to="/login">
+							Sign Up
+            </Button>
+            <Button color="inherit" component={Link} to="/login">
+							Login
+            </Button>
+            <IconButton>
+              <Avatar className="navAvaar" />
+            </IconButton>
+          </Box>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
       </Toolbar>
     );
   };

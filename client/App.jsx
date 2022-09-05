@@ -12,12 +12,12 @@ class App extends Component {
 
   render() {
     return (
-      <Container>
-        <nav>
-          <BrowserRouter>
-            <ul className="header">
-              <NavBar />
-              <li>
+      // <Container>
+      <nav>
+        {/* <BrowserRouter>
+            <ul className="header"> */}
+        <NavBar />
+        {/* <li>
                 <NavLink to="/restaurantprofile">Restaurant Profile</NavLink>
                 <Routes>
                   <Route
@@ -27,9 +27,9 @@ class App extends Component {
                 </Routes>
               </li>
             </ul>
-          </BrowserRouter>
-        </nav>
-      </Container>
+          </BrowserRouter> */}
+      </nav>
+      // </Container>
     );
   }
 }
