@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import './modal.css';
 
-export default function login() {
+export default function login(props) {
   
-  const [sta, setSta] = useState(null);
+  // const [sta, setSta] = useState(null);
+  const showHideClassName = props.show ? 'modal display-block' : 'modal display-none';
   console.log('login');
   return (
-    <div>
+    <div className={showHideClassName}>
       <TextField
         id="email"
         label="E-mail"
