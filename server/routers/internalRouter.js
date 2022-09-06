@@ -37,15 +37,21 @@ router.get('/restaurant/critic', nytController.getReview, (req, res) => {
 //   res.status(200).json(res.locals.allReviews);
 // });
 
-router.get('/restaurantReviews', reviewController.getAllRestaurantReviews, (req, res) => {
-  console.log('/review GET route complete');
-  res.status(200).json(res.locals.restaurantReviews);
-});
+router.get(
+  '/restaurantReviews',
+  reviewController.getAllRestaurantReviews,
+  (req, res) => {
+    res.status(200).json(res.locals.restaurantReviews);
+  }
+);
 
-router.get('/restaurantUserReviews', reviewController.getUserReviews, (req, res) => {
-  console.log('/review GET route complete');
-  res.status(200).json(res.locals.userReviews);
-});
+router.get(
+  '/restaurantUserReviews',
+  reviewController.getUserReviews,
+  (req, res) => {
+    res.status(200).json(res.locals.userReviews);
+  }
+);
 
 // POST USER REVIEWS
 router.post('/reviews', reviewController.createReview, (req, res) => {

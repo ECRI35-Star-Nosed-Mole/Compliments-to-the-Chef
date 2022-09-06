@@ -43,12 +43,10 @@ reviewController.getAllRestaurantReviews = async (req, res, next) => {
   try {
     const response = await reviewModel.find({ restaurant_name });
     res.locals.restaurantReviews = response;
-    // res.locals.restaurantReviews = 'test';
-    console.log(res.locals.restaurantReviews)
     return next();
   } catch (err) {
     const errObj = {
-      log: 'Express error handler triggered in getAllRestuants middleware',
+      log: 'Express error handler triggered in getAllRestaurants middleware',
       status: 400,
       message: { err: 'No reviews found' },
     };
@@ -80,50 +78,49 @@ reviewController.getAllRestaurantReviews = async (req, res, next) => {
     return next(errObj);
   }
 }),
-  //PUT a specific restaurant review if found
-  (reviewController.updateReview = async (req, res, next) => {
-    const { username, restaurant_name, vote, review_content, date } = req.body;
+//PUT a specific restaurant review if found
+reviewController.updateReview = async (req, res, next) => {
+  const { username, restaurant_name, vote, review_content, date } = req.body;
 
-    try {
-      const response = await reviewModel.findOneAndUpdate(
-        { username, restaurant_name },
-        { $set: { vote, review_content, date } },
-        { new: true, upsert: true }
-      );
-      res.locals.updatedReview = response;
-      console.log('UPDATE REVIEW', res.locals.updatedReview); // NOTE: remove in prod
-      return next();
-    } catch (err) {
-      const errObj = {
-        log: 'Express error handler triggered updateReview middleware',
-        status: 400,
-        message: {
-          err: 'Incorrect data submitted / Update failed',
-        },
-      };
-      return next(errObj);
-    }
-  }),
-  //DELETE a specific restaurant review
-  (reviewController.deleteReview = async (req, res, next) => {
-    const { username, restaurant_name } = req.body;
+  try {
+    const response = await reviewModel.findOneAndUpdate(
+      { username, restaurant_name },
+      { $set: { vote, review_content, date } },
+      { new: true, upsert: true }
+    );
+    res.locals.updatedReview = response;
+    return next();
+  } catch (err) {
+    const errObj = {
+      log: 'Express error handler triggered updateReview middleware',
+      status: 400,
+      message: {
+        err: 'Incorrect data submitted / Update failed',
+      },
+    };
+    return next(errObj);
+  }
+},
+//DELETE a specific restaurant review
+reviewController.deleteReview = async (req, res, next) => {
+  const { username, restaurant_name } = req.body;
 
-    try {
-      const response = await reviewModel.findOneAndDelete({
-        username,
-        restaurant_name,
-      });
-      return next();
-    } catch (err) {
-      const errObj = {
-        log: 'Express error handler triggered in deleteReview middleware',
-        status: 400,
-        message: {
-          err: 'Incorrect data submitted. Delete failed',
-        },
-      };
-      return next(errObj);
-    }
-  });
+  try {
+    const response = await reviewModel.findOneAndDelete({
+      username,
+      restaurant_name,
+    });
+    return next();
+  } catch (err) {
+    const errObj = {
+      log: 'Express error handler triggered in deleteReview middleware',
+      status: 400,
+      message: {
+        err: 'Incorrect data submitted. Delete failed',
+      },
+    };
+    return next(errObj);
+  }
+};
 
 module.exports = reviewController;
