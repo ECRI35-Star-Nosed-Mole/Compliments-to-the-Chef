@@ -1,7 +1,5 @@
-import { makeStyles } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-export default makeStyles(() => ({
-  appBar: {
-    margin: '30px 0',
-  },
+export default styled(() => ({
+	appBar: {},
 }));
