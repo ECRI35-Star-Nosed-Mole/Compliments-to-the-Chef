@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 export default function userRatings() {
+
+  
+
   const [sta, setSta] = useState(null);
   const dummyUser = {name:'Dummy',
     avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe1_6-PtcF48iM3PkReAZlBpbSaLDhKNyisg&usqp=CAU',
@@ -12,7 +15,7 @@ export default function userRatings() {
   const dummyReviews =[];
   for (let i = 0; i < 5; i++){
     dummyReviews.push(    <div>
-      <img src={dummyUser.avatar} alt="Profile Pic"></img>
+      <img src={dummyUser.avatar} alt="Profile Pic" width="100px" height="auto"></img>
       <span>{dummyUser.name}</span>
       <p>{dummyUser.review}</p>
     </div>);
