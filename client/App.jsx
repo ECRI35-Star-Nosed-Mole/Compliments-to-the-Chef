@@ -55,15 +55,15 @@ function App() {
 
       <div className="content" style={contentStyle}>
         {/* <Grid direction="column" spacing={2}> */}
-          <div className="info" style={infoStyle}>
-            <Info />
-          </div>
+        <div className="info" style={infoStyle}>
+          <Info />
+        </div>
         {/* </Grid> */}
         {/* <Grid> */}
-          <div className="review-container" style={reviewStyle}>
-            {/* style={reviewStyle} */}
-            <RestaurantProfileContainer />
-          </div>
+        <div className="review-container" style={reviewStyle}>
+          {/* style={reviewStyle} */}
+          <RestaurantProfileContainer />
+        </div>
         {/* </Grid> */}
       </div>
     </div>
