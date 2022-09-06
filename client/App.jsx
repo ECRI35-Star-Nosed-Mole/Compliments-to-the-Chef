@@ -54,17 +54,17 @@ function App() {
       </nav>
 
       <div className="content" style={contentStyle}>
-        <Grid direction="column" spacing={2}>
+        {/* <Grid direction="column" spacing={2}> */}
           <div className="info" style={infoStyle}>
             <Info />
           </div>
-        </Grid>
-        <Grid>
-          <div className="review-container">
+        {/* </Grid> */}
+        {/* <Grid> */}
+          <div className="review-container" style={reviewStyle}>
             {/* style={reviewStyle} */}
             <RestaurantProfileContainer />
           </div>
-        </Grid>
+        {/* </Grid> */}
       </div>
     </div>
   // </Container>
