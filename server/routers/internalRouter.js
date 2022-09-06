@@ -31,10 +31,20 @@ router.get('/restaurant/critic', nytController.getReview, (req, res) => {
 
 // REVIEW QUERIES //
 
-// GET USER REVIEWS
-router.get('/reviews', reviewController.getReviews, (req, res) => {
+// GET ALL REVIEWS
+// router.get('/reviews', reviewController.getAllReviews, (req, res) => {
+//   console.log('GET ALL REVIEWS route complete');
+//   res.status(200).json(res.locals.allReviews);
+// });
+
+router.get('/restaurantReviews', reviewController.getAllRestaurantReviews, (req, res) => {
   console.log('/review GET route complete');
-  res.status(200).send(res.locals.reviews);
+  res.status(200).json(res.locals.restaurantReviews);
+});
+
+router.get('/restaurantUserReviews', reviewController.getUserReviews, (req, res) => {
+  console.log('/review GET route complete');
+  res.status(200).json(res.locals.userReviews);
 });
 
 // POST USER REVIEWS
@@ -46,13 +56,13 @@ router.post('/reviews', reviewController.createReview, (req, res) => {
 // PUT USER REVIEWS
 router.put('/reviews', reviewController.updateReview, (req, res) => {
   console.log('/review PUT complete');
-  res.status(200).send(res.locals.updateReview);
+  res.status(200).json(res.locals.updatedReview);
 });
 
 // DELETE USER REVIEWS
 router.delete('/reviews', reviewController.deleteReview, (req, res) => {
   console.log('/review DELETE complete');
-  res.status(200).end();
+  res.status(200).send('Record successfully deleted');
 });
 
 /* ************************ */
