@@ -19,9 +19,7 @@ export default function criticRatings() {
       .then(data => setCriticReview(data));
   }, []);
 
-
   const [sta, setSta] = useState(null);
-
 
   return (
     <div>
