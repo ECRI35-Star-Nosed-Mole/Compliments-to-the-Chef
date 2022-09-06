@@ -13,9 +13,10 @@ const navStyle = {
 };
 
 const contentStyle = {
+	// background-color:'red'
 	display: 'flex',
 	position: 'relative',
-	// border: '1px solid red',
+	border: '1px solid red',
 	gap: '10px',
 	height: '100%',
 };

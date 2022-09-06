@@ -24,7 +24,7 @@ router.get('/restaurant/info', yelpController.getRestaurant, (req, res) => {
 // GET RESTAURANT CRITIC REVIEWS
 router.get('/restaurant/critic', nytController.getReview, (req, res) => {
   console.log('/restaurant GET route complete');
-  res.status(200).end();
+  res.status(200).send(res.locals.nytReview);
 });
 
 /* ************************ */

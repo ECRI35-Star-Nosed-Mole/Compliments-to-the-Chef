@@ -10,7 +10,7 @@ const url = 'https://api.yelp.com/v3/businesses/search';
 /* Async func to find a single restaurant's details in our Mongoose db. 
 If it doesn't exist, fetch them from Yelp API instead. */
 yelpController.getRestaurant = async (req, res, next) => {
-  const { restaurant_name, location } = req.body;
+  const { restaurant_name, location } = req.query;
   const searchQuery = `?term=${restaurant_name}&location=${location}`;
 
   try {
