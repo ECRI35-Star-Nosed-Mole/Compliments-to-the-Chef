@@ -38,11 +38,13 @@ reviewController.getUserReviews = async (req, res, next) => {
 
 //GET all reviews for a specific restaurant
 reviewController.getAllRestaurantReviews = async (req, res, next) => {
-  const { restaurant_name } = req.body; 
+  // const { restaurant_name } = req.body;
+  const restaurant_name = 'karasu';
   try {
     const response = await reviewModel.find({ restaurant_name });
     res.locals.restaurantReviews = response;
-    console.log('GET ALL REST REVIEWS', res.locals.restaurantReviews);
+    // res.locals.restaurantReviews = 'test';
+    console.log(res.locals.restaurantReviews)
     return next();
   } catch (err) {
     const errObj = {
@@ -55,13 +57,17 @@ reviewController.getAllRestaurantReviews = async (req, res, next) => {
 };
 
 //POST a new review by a specific user
-reviewController.createReview = async (req, res, next) => {
+(reviewController.createReview = async (req, res, next) => {
   const { username, restaurant_name, vote, review_content } = req.body;
-  const date = new Date(); 
+  const date = new Date();
 
   try {
     const response = await reviewModel.create({
-      username, restaurant_name, vote, review_content, date
+      username,
+      restaurant_name,
+      vote,
+      review_content,
+      date,
     });
     res.locals.newReview = response;
     return next();
@@ -73,50 +79,51 @@ reviewController.createReview = async (req, res, next) => {
     };
     return next(errObj);
   }
-},
+}),
+  //PUT a specific restaurant review if found
+  (reviewController.updateReview = async (req, res, next) => {
+    const { username, restaurant_name, vote, review_content, date } = req.body;
 
-//PUT a specific restaurant review if found
-reviewController.updateReview = async (req, res, next) => {
-  const { username, restaurant_name, vote, review_content, date } = req.body;
+    try {
+      const response = await reviewModel.findOneAndUpdate(
+        { username, restaurant_name },
+        { $set: { vote, review_content, date } },
+        { new: true, upsert: true }
+      );
+      res.locals.updatedReview = response;
+      console.log('UPDATE REVIEW', res.locals.updatedReview); // NOTE: remove in prod
+      return next();
+    } catch (err) {
+      const errObj = {
+        log: 'Express error handler triggered updateReview middleware',
+        status: 400,
+        message: {
+          err: 'Incorrect data submitted / Update failed',
+        },
+      };
+      return next(errObj);
+    }
+  }),
+  //DELETE a specific restaurant review
+  (reviewController.deleteReview = async (req, res, next) => {
+    const { username, restaurant_name } = req.body;
 
-  try {
-    const response = await reviewModel.findOneAndUpdate(
-      { username, restaurant_name },
-      { $set: { vote, review_content, date } }, 
-      { new: true, upsert: true } 
-    );
-    res.locals.updatedReview = response;
-    console.log('UPDATE REVIEW', res.locals.updatedReview); // NOTE: remove in prod
-    return next();
-  } catch (err) {
-    const errObj = {
-      log: 'Express error handler triggered updateReview middleware',
-      status: 400,
-      message: {
-        err: 'Incorrect data submitted / Update failed',
-      },
-    };
-    return next(errObj);
-  }
-},
-
-//DELETE a specific restaurant review
-reviewController.deleteReview = async (req, res, next) => {
-  const { username, restaurant_name } = req.body;
-
-  try {
-    const response = await reviewModel.findOneAndDelete({ username, restaurant_name });
-    return next();
-  } catch (err) {
-    const errObj = {
-      log: 'Express error handler triggered in deleteReview middleware',
-      status: 400,
-      message: {
-        err: 'Incorrect data submitted. Delete failed',
-      },
-    };
-    return next(errObj);
-  }
-};
+    try {
+      const response = await reviewModel.findOneAndDelete({
+        username,
+        restaurant_name,
+      });
+      return next();
+    } catch (err) {
+      const errObj = {
+        log: 'Express error handler triggered in deleteReview middleware',
+        status: 400,
+        message: {
+          err: 'Incorrect data submitted. Delete failed',
+        },
+      };
+      return next(errObj);
+    }
+  });
 
 module.exports = reviewController;
