@@ -7,20 +7,20 @@ import { createRoot } from 'react-dom/client';
 // import { Provider } from 'react-redux'; // importing react-redux
 // import { createStore, applyMiddleware, compose } from 'redux';
 // import thunk from 'redux-thunk';
-import reducers from './redux/reducers';
+// import reducers from './redux/reducers';
 
 // initating theme color for our app
 const theme = createTheme({
-	palette: {
-		// primary color
-		primary: {
-			//light-sky-blue
-			main: '#87CEFA',
-		},
-		secondary: {
-			main: orange[500],
-		},
-	},
+  palette: {
+    // primary color
+    primary: {
+      //light-sky-blue
+      main: '#87CEFA',
+    },
+    secondary: {
+      main: orange[500],
+    },
+  },
 });
 
 // initaiting redux store
@@ -30,9 +30,9 @@ const theme = createTheme({
 const rootEle = document.getElementById('app');
 const root = createRoot(rootEle);
 root.render(
-	<ThemeProvider theme={theme}>
-		{/* <Provider store={store}> */}
-			<App />,
-		{/* </Provider> */}
-	</ThemeProvider>,
+  <ThemeProvider theme={theme}>
+    {/* <Provider store={store}> */}
+    <App />,
+    {/* </Provider> */}
+  </ThemeProvider>,
 );
