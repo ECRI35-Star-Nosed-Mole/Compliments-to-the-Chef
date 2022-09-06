@@ -8,7 +8,7 @@ nytController.url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?ap
  * Get review data from a database. If data is not found, fetch data from the NY Times Articleexternal API.
  */
 nytController.getReview = async (req, res, next) => {
-  const { restaurant_name } = req.body;
+  const { restaurant_name } = req.query;
 
   const url =
     nytController.url + `&q=${restaurant_name}&fq=news_desk:("Dining")`;

@@ -1,5 +1,5 @@
 // import { width } from '@mui/system';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const style = {maxWidth:'100%', maxHeight:'15rem'};
 
@@ -8,7 +8,7 @@ function Info(){
   const exteriorPicUrl = 'https://stories.inspirebrands.com/wp-content/uploads/2018/12/Buffalo-Wild-Wings-Restaurant-Exterior.jpg';
   const interiorPicUrl = 'https://upserve.com/media/sites/2/Restaurant-Decor-Blog.jpg';
   const dishPicUrl = 'http://res.cloudinary.com/simpleview/image/upload/v1640823092/clients/orlandofl/185683_entrees_667152ec-7340-4428-91e7-72265329d7d0.jpg';
-  const cuisine = 'Asian Fusion';
+
   const hours = ['11:00 AM - 12:00 AM',
     '11:00 AM - 12:00 AM',
     '11:00 AM - 12:00 AM',
@@ -17,11 +17,19 @@ function Info(){
     '11:00 AM - 12:00 AM',
     '11:00 AM - 12:00 AM',
   ];
+  const [restInfo, setRestInfo] = useState({});
+  useEffect(() => {
+    const URL = '/internal/restaurant/info';
+    fetch(URL + '?restaurant_name=karasu&location=NYC')
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .then(data => setRestInfo(data));
+  }, []);
 
   return(
     <div>
       <img src={exteriorPicUrl} alt="Restaurant Exterior" style={style}></img>
-      <p>Cuisine: {cuisine}</p>
+      {/* <p>Cuisine: {cuisine}</p> */}
       <p>Hours:</p>
       <p>Monday: {hours[0]}</p>
       <p>Tuesday: {hours[1]}</p>
