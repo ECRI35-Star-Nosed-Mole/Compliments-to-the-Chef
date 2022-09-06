@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'; // importing useEffect hook
 import { Container, Grid } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 import NavBar from './components/NavBar.js';
 import RestaurantProfileContainer from './restaurantProfileContainer';
 import Info from './components/info';
-import { getAllReviews } from './redux/actions/index.js';
+// import { getAllReviews } from './redux/actions/index.js';
 
 //using inline syle for now. Convert to class styles later
 const appStyle = {
@@ -40,12 +40,12 @@ const reviewStyle = {
 };
 
 function App() {
-	const dispatch = useDispatch(); // usinfg dispatch hook
-	useEffect(() => {
-		dispatch(getAllReviews());
-	}, [dispatch]);
-	const allReviews = useSelector((state) => state.allReviews);
-	console.log('getting all reviews from backend', allReviews);
+	// const dispatch = useDispatch(); // usinfg dispatch hook
+	// useEffect(() => {
+	// 	dispatch(getAllReviews());
+	// }, [dispatch]);
+	// const allReviews = useSelector((state) => state.allReviews);
+	// console.log('getting all reviews from backend', allReviews);
 	return (
 		// <Container>
 		<div className="app" style={appStyle}>
