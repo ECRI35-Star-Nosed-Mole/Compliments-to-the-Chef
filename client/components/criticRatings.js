@@ -14,7 +14,7 @@ export default function criticRatings() {
     dummyReviews.push(<div>
       <img src={dummyCritic.avatar} alt="Profile Pic" width="100px" height="auto"></img>
       <span>{dummyCritic.name}</span>
-      <p>{dummyCritic.review}</p>
+      <p>{dummyCritic.review}</p> 
     </div>);
   }
   const [sta, setSta] = useState(null);
